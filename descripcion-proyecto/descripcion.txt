@@ -1,0 +1,46 @@
+Título del Proyecto: Loan Link  
+Descripción de "Loan Link":
+"Loan Link" es una innovadora aplicación web diseñada para facilitar la conexión entre usuarios que desean adquirir préstamos y aquellos que están dispuestos a ofrecer préstamos. Con un enfoque en la transparencia, la confianza y la accesibilidad, "Loan Link" proporciona una plataforma segura y eficiente donde los prestamistas y los solicitantes de préstamos pueden interactuar de manera efectiva.
+Funcionalidades Principales:
+1.	Registro y Publicación de Ofertas de Préstamos:
+o	Los prestamistas pueden registrarse en la plataforma y publicar ofertas de préstamos. En estas publicaciones, los prestamistas especifican la tasa de interés, una descripción sobre ellos como prestamistas y los requisitos que los usuarios deben cumplir para ser considerados para el préstamo.
+2.	Aplicación y Solicitud de Préstamos:
+o	Los usuarios que buscan adquirir un préstamo pueden navegar por las ofertas de préstamos publicadas por los prestamistas y aplicar a aquellas que mejor se ajusten a sus necesidades. Pueden enviar solicitudes de préstamo y esperar la respuesta del prestamista.
+3.	Decisión de Aprobación por Parte de los Prestamistas:
+o	Los prestamistas tienen la facultad de aceptar o rechazar las solicitudes de préstamo recibidas. Toman decisiones informadas basadas en la información proporcionada por los solicitantes y sus propios criterios de evaluación.
+4.	Notificaciones y Confirmaciones:
+o	Los usuarios reciben notificaciones en tiempo real sobre el estado de sus solicitudes de préstamo. En caso de que una solicitud sea aprobada, se enviará una notificación al solicitante para que la confirme.
+5.	Seguimiento de Pagos:
+o	Una vez que se confirma un préstamo, los usuarios pueden ver de manera clara y detallada cuándo son sus próximos pagos. Además, los prestamistas pueden dar seguimiento al progreso de los pagos de sus clientes.
+Con "Loan Link", el proceso de préstamos se simplifica y se hace más accesible para todos los usuarios, garantizando una experiencia segura y transparente para ambas partes involucradas.
+
+
+
+
+
+Objetivo General:
+Facilitar el acceso a préstamos financieros de manera segura y transparente, creando una plataforma en línea que conecte a prestamistas y solicitantes de préstamos, brindando oportunidades de financiamiento a aquellos que lo necesiten.
+Objetivos Específicos:
+1.	Crear una plataforma web intuitiva: Desarrollar una interfaz de usuario amigable que permita a los usuarios navegar fácilmente por la plataforma, registrar sus perfiles, publicar ofertas de préstamos y aplicar a las mismas de manera sencilla.
+2.	Garantizar la seguridad de la información: Implementar medidas de seguridad robustas para proteger la información personal y financiera de los usuarios, asegurando la confidencialidad y la integridad de los datos en todo momento.
+3.	Promover la transparencia en las transacciones: Proporcionar información detallada sobre las ofertas de préstamos, incluyendo tasas de interés, requisitos y condiciones, para que los usuarios puedan tomar decisiones informadas y confiables.
+4.	Optimizar el proceso de evaluación de préstamos: Desarrollar algoritmos y criterios de evaluación eficientes que permitan a los prestamistas tomar decisiones de aprobación basadas en el riesgo crediticio y otros factores relevantes de manera rápida y precisa.
+5.	Facilitar la comunicación entre prestamistas y solicitantes: Implementar sistemas de notificación y mensajería que mantengan a los usuarios informados sobre el estado de sus solicitudes de préstamo y fomenten la comunicación fluida entre las partes involucradas.
+6.	Brindar soporte y seguimiento post-préstamo: Establecer mecanismos para que los prestamistas y los solicitantes puedan dar seguimiento al progreso de los pagos, resolver cualquier problema que pueda surgir y garantizar una experiencia satisfactoria para ambas partes.
+Estos objetivos específicos están diseñados para garantizar que "Loan Link" cumpla con su objetivo general de facilitar el acceso a préstamos financieros de manera segura, transparente y eficiente.
+
+ 
+Alcances del Proyecto:
+1.	Desarrollo de la Plataforma "Loan Link": El proyecto incluirá el diseño y desarrollo de la aplicación web "Loan Link", que actuará como intermediario entre prestamistas y solicitantes de préstamos.
+2.	Registro de Usuarios: Se permitirá a los usuarios registrarse en la plataforma como prestamistas o solicitantes de préstamos, proporcionando la información necesaria para verificar su identidad y establecer perfiles de usuario.
+3.	Publicación de Ofertas de Préstamos: Los prestamistas podrán publicar ofertas de préstamos, especificando la tasa de interés, los requisitos y cualquier otra información relevante para los solicitantes.
+4.	Solicitud de Préstamos: Los solicitantes de préstamos podrán navegar por las ofertas de préstamos disponibles y solicitar préstamos en función de sus necesidades financieras.
+5.	Proceso de Evaluación y Aprobación: Se implementará un proceso de evaluación y aprobación de préstamos que permita a los prestamistas tomar decisiones informadas sobre las solicitudes recibidas.
+6.	Notificaciones y Comunicación: Se proporcionarán sistemas de notificación y comunicación para mantener a los usuarios informados sobre el estado de sus solicitudes de préstamo y facilitar la comunicación entre prestamistas y solicitantes.
+7.	Gestión de Pagos: Se ofrecerá una funcionalidad para que los usuarios puedan gestionar sus pagos de préstamos, visualizar los próximos pagos y realizar seguimiento del progreso de los pagos.
+Límites del Proyecto:
+1.	No se ofrecerán servicios financieros directos: "Loan Link" actuará como intermediario entre prestamistas y solicitantes de préstamos, pero no proporcionará servicios financieros directos ni actuará como entidad financiera.
+2.	Responsabilidad limitada sobre transacciones y acuerdos: La plataforma "Loan Link" no será responsable de las transacciones financieras realizadas entre prestamistas y solicitantes de préstamos, ni de los acuerdos o desacuerdos resultantes.
+3.	Limitaciones en la evaluación crediticia: Aunque se implementará un proceso de evaluación de préstamos, "Loan Link" no podrá garantizar la precisión ni la exhaustividad de la evaluación crediticia de los solicitantes, ya que esto dependerá en gran medida de la información proporcionada por los usuarios.
+4.	No se garantiza la aprobación de préstamos: A pesar de que se ofrecerá un proceso de solicitud y evaluación de préstamos, "Loan Link" no puede garantizar la aprobación de préstamos por parte de los prestamistas, ya que esto dependerá de diversos factores y criterios establecidos por los prestamistas individuales.
+5.	No se proporcionará asesoramiento financiero: La plataforma "Loan Link" no proporcionará asesoramiento financiero ni recomendará productos financieros específicos a los usuarios.
