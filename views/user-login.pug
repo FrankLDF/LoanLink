@@ -1,0 +1,19 @@
+extends layout.pug 
+
+block content 
+    main.container-fluid.full-screen-container.vh-100.d-flex.align-items-center.justify-content-center
+        .container-sm.rounded.shadow.row
+            .col-4.bg-primary.d-flex.align-items-center.justify-content-center
+                img.w-75.h-50(src="/img/logo-bold-png.png", alt="logo-loan-link") 
+            .col-8.d-flex.align-items-center.justify-content-center
+                form.p-5(action="#", method="post")
+                    .row.justify-content-center
+                            .mb-3
+                                label.form-label(for="inputemail") Correo: 
+                                input.d-blok.form-control(type="email" id="inputemail" placeholder="nombre@ejemplo.com")
+                            .mb-3
+                                label.form-label(for="inputpass") Contraseña: 
+                                input.d-blok.form-control(type="password" id="inputpass" placeholder="Escriba su contraseña")
+                            a.btn.btn-danger.col-4.me-3(href="/")  Cancelar   
+                            button.btn.btn-primary.col-4(type="submit") Iniciar   
+
