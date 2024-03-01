@@ -1,0 +1,40 @@
+extends layout
+
+block content 
+    main.container-fluid.row 
+        .col-4.d-flex.justify-content-center.vh-100.bg-primary.row
+            img.w-75.h-25.mt-3(src="/img/logo-bold-png.png", alt="logo-loanlink")
+            p.h2.col-12.text-center 
+                span.text-white Bienvenido! 
+                | a nuestra comunidad de prestamos.
+            img.w-75.mb-3(src="/img/comunidad-loan-link.png", alt="logo-loanlink")
+            
+        .col-8.vh-100.p-5.row
+            h2.text-center.text-secondary Registrate!
+            form.row.p-5.rounded.shadow.d-flex.justify-contenten-center.align-item-center(action="", method="post")
+                .col-5.form-check.form-switch.d-flex.justify-content-end 
+                    input.form-check-input(type="radio", required, name="tipoCliente" , id="cliente")
+                    label.form-check-label(for="cliente") Quiero un prestamo
+                .col-5.offset-2.form-check.form-switch 
+                    input.form-check-input(type="radio", name="tipoCliente" , id="prestamista")
+                    label.form-check-label(for="prestamista") Quiero prestar
+                input.p-2.col-5.mb-3(type="text",required, name="nombre", id="nombre", placeholder="Nombres")
+                input.p-2.col-5.mb-3.offset-2(type="text", required, name="apellido", id="apellido", placeholder="Apellidos")
+                input.p-2.col-5.mb-3(type="text", required, name="nacionalidad", id="nacionalidad", placeholder="Nacionalidad")
+                input.p-2.col-5.mb-3.offset-2(type="tel", required, name="telefono", id="telefono", placeholder="Telefono" )
+                select.mb-3.w-25.form-select(aria-label="Default select example", required)
+                    option(select) Elige un tipo de documento de identidad  
+                    option(value="1") Cédula
+                    option(value="2") Pasaporte
+                input.p-2.col-5.offset-4.mb-3(type="text", required, name="documento", id="documento", placeholder="Numero de documento")
+                input.p-2.col-12.mb-3.me-5(type="email", required, name="correo", id="correo", placeholder="correo@personalaqui.com")
+                input.p-2.col-12.mb-3.me-5(type="text", required, name="correoPypal", id="correoPypal", placeholder="Correo Pypal aqui")
+                input.col-12.mb-3.me-5(type="password", required, name="pass", id="pass", placeholder="Contraseña")
+                input.p-2.col-12.mb-3.me-5(type="password",required, name="confirm-pass", id="confirm-pass", placeholder="Confirma la contrasena")
+                button.btn.btn-primary(type="submit") Crear cuenta
+                p.text-center.display-8.mt-3 Ya tienes una cuenta? 
+                    a.link-underline.link-underline-opacity-0.link-opacity-25-hover(href="/login") Inicia seccion aqui 
+                if error 
+                        p.text-danger error 
+                
+

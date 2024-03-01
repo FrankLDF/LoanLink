@@ -1,18 +1,23 @@
 // importar BD conection
 
 // controllers
-const userHome = (req, res) => {
-    res.render('user-home', { titulo: "LoanLink-home" });
+const home = (req, res) => {
+    res.render('home', { titulo: "LoanLink" });
 }
 const userRegisterform = (req, res) => {
-    res.render('user-hom', {titulo: "LoanLink-home"})
+    res.render('user-register', {titulo: "LoanLink-register"})
 }
 const userLoginForm = (req, res) => {
     res.render('user-login', {titulo: "LoanLink-login"})
 }
 
+const userHome = (req, res) => {
+  res.render("user-home", { titulo: "LoanLink-home", tipoUsuario: "prestamista" });
+};
+
 export default {
-    userHome,
+    home,
     userLoginForm,
     userRegisterform,
+    userHome,
 }

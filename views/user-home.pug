@@ -1,43 +1,25 @@
-extends layout.pug 
-
-block header 
-            .container-fluid.bg-primary.p-2.sticky-top.shadow
-                div.container.mx-auto.row
-                    .col-3
-                        img.w-100.h-100(src="/img/logo-bold-png.png", alt="logo-loan-link")
-                    .col.offset-6.d-flex.align-items-end
-                        a.btn.btn-light.text-primary(href="#") Registrarse
-                        a.btn.btn-light.text-primary.ms-2(href="/login") Iniciar seccion
+extends layout.pug
 
 
-block content 
-    main.container.mx-auto.mt-5.text-center
-        h1.text-secondary-emphasis.display-4 ¡Bienvenido a "Loan Link"!
-        .row.container.mt-5 
-            p.display-6.col-6.rounded.shadow-sm Somos una plataforma innovadora diseñada para conectar de manera transparente a aquellos que necesitan préstamos con prestamistas confiables. En "Loan Link", nos dedicamos a proporcionar una experiencia segura, confiable y accesible para todos nuestros usuarios
-            div.col-6.d-flex.align-items-center.justify-content-center
-                img.w-75.h-100(src="/img/Prestamos-personales.png", alt="logo-loan-link")
-        h3.mt-5 ¿Por qué elegir "Loan Link"?
-        .row.container.mt-5 
-            div.col-5.d-flex.align-items-center.justify-content-center
-                img.w-100.h-100(src="/img/por-que-loan-link.jpg", alt="logo-loan-link")
-            p.display-6.col-7.rounded.shadow-sm En "Loan Link", creemos en la transparencia total en todas nuestras transacciones. Nuestro objetivo es ofrecer una plataforma donde los usuarios puedan sentirse seguros al solicitar u ofrecer préstamos, sabiendo que están tomando decisiones informadas en todo momento.
-        h3.mt-5 Beneficios para nuestros Usuarios:
-        .row.container.mx-auto.mt-5 
-            .col-3.rounded.shadow-sm.row.mx-auto
-                p.display-6.col-12 Transparencia
-                p.display-8.col-12 Nuestro enfoque en la transparencia significa que todos los términos y condiciones son claros desde el principio. No hay sorpresas ocultas.
-            .col-3.rounded.shadow-sm.row.mx-auto
-                p.display-6.col-12 Confianza
-                p.display-8.col-12 Trabajamos con prestamistas confiables y verificados para garantizar la seguridad de todas las transacciones.
-            .col-3.rounded.shadow-sm.row.mx-auto
-                p.display-6.col-12 Accesibilidad
-                p.display-8.col-12 Ofrecemos una plataforma fácil de usar que hace que el proceso de préstamo sea rápido y sin complicaciones.
-        h3.mt-5 ¿Listo para comenzar tu viaje financiero con "Loan Link"?
-                p.mt-3 
-                    a.link-underline.link-underline-opacity-0.link-opacity-25-hover(href="#") ¡Regístrate ahora 
-                    |para explorar todas nuestras funciones y descubre cómo "Loan Link" puede ayudarte a alcanzar tus metas financieras!
-            
+block header
+    .container-fluid.bg-primary.d-flex.justify-content-end.mb-1
+        i.bi.bi-bell-fill.me-5.text-white
+        p.me-2.text-white Nombre usuario aqui
+        i.bi.bi-person-circle.text-white
+        i.bi.bi-box-arrow-right.text-white.ms-5
+    header.container-fluid.bg-primary.d-flex.justify-content-end.mb-1.p-2.shadow-sm 
+        .col-3
+            img.w-100.h-100(src="/img/logo-bold-png.png", alt="logo-loan-link")
+        .col-3.offset-6.d-flex.align-items-end.row
+            if tipoUsuario === 'prestamista'
+                
+                a.link-underline.link-underline-opacity-0.p-2.col-5.offset-1.text-white.border-bottom(href="/new-publication") Nueva Publicacion
+                a.link-underline.link-underline-opacity-0.p-2.col-5.offset-1.text-white.border-bottom(href="#") Seguir prestamos
+            else if tipoUsuario === 'cliente'
+                a.link-underline.link-underline-opacity-0.p-2.col-7.text-white.border-bottom(href="#") Seguimiento de prestamo
+                //-a.p-2.col-5.offset-1.text-white.border(href="#") Seguimiento de prestamo
 
-
-//- h1= titulo
+block  content
+    if tipoUsuario === 'prestamista'
+        if !publicaciones
+            p.display-2.text-secondary.text-center.mt-5 No tienes publicaciones activas
