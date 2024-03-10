@@ -1,0 +1,21 @@
+extends layout.pug
+
+block content 
+    main.container-fluid.row 
+        .col-4.d-flex.justify-content-center.vh-100.bg-primary.row
+            img.w-75.h-25.mt-3(src="/img/logo-bold-png.png", alt="logo-loanlink")
+            p.h2.col-12.text-center 
+                span.text-white Bienvenido! 
+                | a nuestra comunidad de prestamos.
+            img.w-75.mb-3(src="/img/comunidad-loan-link.png", alt="logo-loanlink")
+            
+        .col-8.vh-100.p-5.row
+            h2.text-center.text-secondary Que deceas hacer?
+            form.mx-auto.rounded(action="", method="post")
+                .col-10.form-check.form-switch.d-flex 
+                    input.form-check-input(type="radio", required, name="tipo_usuario" , id="cliente", value="1")
+                    label.form-check-label.display-4(for="cliente") Quiero un prestamo
+                .col-10.form-check.form-switch 
+                    input.form-check-input(type="radio", name="tipo_usuario" , id="prestamista", value="2")
+                    label.form-check-label.display-4(for="prestamista") Quiero prestar
+                button.btn.btn-primary.col-2.offset-8(type="submit") Siguiente

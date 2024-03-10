@@ -1,0 +1,15 @@
+extends layout.pug 
+
+block content 
+    p.display-2.text-primary.text-center Tus Clientes!
+    .container-md.row.rounded.shadow.mx-auto.p-3
+        ul.col-11.row.list-unstyled.border.p-2.rounded.mb-2.mx-auto
+            li.col-3.display-7= `${nombre}`
+            li.col-3.display-7= `Pagos pendientes:  ${pagosPendientes}`
+            li.col-3.display-7= `Estado:  ${estado}`
+            a.col-1.offset-1(href="#") 
+                i.bi.bi-chat-left-text-fill.text-success
+            a.col-1(href="#") 
+                i.bi.bi-aspect-ratio-fill.text-primary
+            
+        

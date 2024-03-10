@@ -2,24 +2,59 @@ extends layout.pug
 
 
 block header
-    .container-fluid.bg-primary.d-flex.justify-content-end.mb-1
+    .container-fluid.bg-primary.d-flex.justify-content-end.mb-1.pt-2
         i.bi.bi-bell-fill.me-5.text-white
-        p.me-2.text-white Nombre usuario aqui
+        p.me-2.text-white= `${user[0].nombre} ${user[0].apellido}` 
         i.bi.bi-person-circle.text-white
-        i.bi.bi-box-arrow-right.text-white.ms-5
+        a(href="/logout") 
+            i.bi.bi-box-arrow-right.text-white.ms-5
     header.container-fluid.bg-primary.d-flex.justify-content-end.mb-1.p-2.shadow-sm 
         .col-3
             img.w-100.h-100(src="/img/logo-bold-png.png", alt="logo-loan-link")
         .col-3.offset-6.d-flex.align-items-end.row
-            if tipoUsuario === 'prestamista'
+            if user[0].tipo_usuario == "2"
                 
                 a.link-underline.link-underline-opacity-0.p-2.col-5.offset-1.text-white.border-bottom(href="/new-publication") Nueva Publicacion
-                a.link-underline.link-underline-opacity-0.p-2.col-5.offset-1.text-white.border-bottom(href="#") Seguir prestamos
-            else if tipoUsuario === 'cliente'
+                a.link-underline.link-underline-opacity-0.p-2.col-5.offset-1.text-white.border-bottom(href="/loan-clients") Seguir prestamos
+            else if user[0].tipo_usuario == "1"
                 a.link-underline.link-underline-opacity-0.p-2.col-7.text-white.border-bottom(href="#") Seguimiento de prestamo
                 //-a.p-2.col-5.offset-1.text-white.border(href="#") Seguimiento de prestamo
 
 block  content
-    if tipoUsuario === 'prestamista'
-        if !publicaciones
+    if user[0].tipo_usuario == "2"
+        if publications.length === 0
             p.display-2.text-secondary.text-center.mt-5 No tienes publicaciones activas
+        else 
+            .container-lg.shadow.rounded.row.p-5.mx-auto.mt-5
+                p.display-2.text-secondary.text-center.mt-5 Tus Publicaciones 
+                each publication in publications
+                    .card.col-5.me-3.mx-auto.mt-3.border.border-primary
+                        .card-body 
+                            p.card-title= publication.nombre_prestamista
+                            p.card-subtitle.mb-2.text-body-secondary Mi descripcion:
+                            p.card-text= publication.descripcion
+                            p.card-text= `Tasa de interés: ${publication.tasa_interes}%`
+                            p.card-text= `Cantidad mínima: $${publication.cant_min}`
+                            p.card-text= `Cantidad máxima: $${publication.cant_max}`
+                            p.card-subtitle.mb-2.text-body-secondary Requisitos:
+                            p.card-text= publication.requisitos
+                            a.card-link.text-secondary(href="#") Editar
+                            a.card-link.text-secondary(href="#") Ocultar
+                            a.card-link.text-secondary(href="#") Eliminar
+
+            
+    if user[0].tipo_usuario == "1"
+        if ofertasPublicadas.length !== 0
+            .container-lg.shadow.rounded.row.p-5.mx-auto.mt-5
+                each oferta of ofertasPublicadas
+                    .card.col-5.me-3.mx-auto.mt-3.border.border-primary
+                        .card-body 
+                            p.card-title= oferta.nombre_prestamista
+                            p.card-subtitle.mb-2.text-body-secondary Descripcion del prestamista:
+                            p.card-text= oferta.descripcion
+                            p.card-text= `Tasa de interés: ${oferta.tasa_interes}%`
+                            p.card-text= `Cantidad mínima: $${oferta.cant_min}`
+                            p.card-text= `Cantidad máxima: $${oferta.cant_max}`
+                            p.card-subtitle.mb-2.text-body-secondary Requisitos exigidos por el prestamista:
+                            p.card-text= oferta.requisitos
+                            a.card-link.text-secondary(href="#") Aplicar a oferta

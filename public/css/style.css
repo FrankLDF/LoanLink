@@ -1,0 +1,15 @@
+.sticky-content {
+    position: sticky;
+    top: 0; /* Ajusta según necesites */
+    height: 100vh; /* Altura fija */
+    overflow-y: auto; /* Añade un scroll si el contenido es más grande que la altura */
+}
+
+.scrollable-content {
+    height: 100vh; /* Altura fija */
+    overflow-y: auto; /* Añade un scroll si el contenido es más grande que la altura */
+}
+
+.none{
+    display: none;
+}

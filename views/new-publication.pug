@@ -1,17 +1,20 @@
 extends layout.pug 
 
 block content
-  form( method="post")
-    input#1(type="text", name="")
-    textarea#2(name="", cols="30", rows="10")
-    input#3(type="number", name="")
-    input#3(type="number", name="")
-    input#3(type="number", name="")
-    textarea#4(name="", cols="30", rows="10")
-    button(type="submit") Crear publicacion
-    button(type="submit") Cancelar
+  p.text-center.display-2.mb-5.mt-3.text-primary= `Publica tu oferta de prestamo! ${dataUser[0].nombre}`
+  form.container-md.shadow.rounded.row.mx-auto.p-5(action="/new-publication" method="post")
+    input.p-3.mb-3.border.border-primary.rounded(type="text", name="nombre_prestamista", placeholder="Nombre personal o de la empresa")
+    textarea.p-3.mb-3.border.border-primary.rounded(name="descripcion", cols="30", rows="10", placeholder="Sobre la empresa")
+    input.p-3.mb-3.border.border-primary.rounded(type="number", name="tasa_interes", placeholder="Tasa de interes")
+    input.p-3.mb-3.border.border-primary.rounded(type="number", name="cant_min", placeholder="Cantidad minima")
+    input.p-3.mb-3.border.border-primary.rounded(type="number", name="cant_max", placeholder="Cantidad maxima")
+    textarea.p-3.mb-3.border.border-primary.rounded(name="requisitos", cols="30", rows="10", placeholder="Requisitos" )
+    button.btn.btn-danger.col-3.offset-3(type="reset") Cancelar
+    button.btn.btn-primary.col-3.offset-3(type="submit") Crear publicacion
+  if error  
+    p.text-danger= error
 
 
 
- 
+
 
