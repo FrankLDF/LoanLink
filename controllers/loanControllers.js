@@ -4,7 +4,6 @@ import passport from "passport";
 
 const newPublication = (req, res) => {
   const dataUser = req.user;
-  console.log(dataUser);
   if (dataUser) {
     res.render("new-publication", { titulo: "new-publication", dataUser });
   } else {

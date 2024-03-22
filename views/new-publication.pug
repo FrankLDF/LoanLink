@@ -9,7 +9,7 @@ block content
     input.p-3.mb-3.border.border-primary.rounded(type="number", name="cant_min", placeholder="Cantidad minima")
     input.p-3.mb-3.border.border-primary.rounded(type="number", name="cant_max", placeholder="Cantidad maxima")
     textarea.p-3.mb-3.border.border-primary.rounded(name="requisitos", cols="30", rows="10", placeholder="Requisitos" )
-    button.btn.btn-danger.col-3.offset-3(type="reset") Cancelar
+    a.btn.btn-danger.col-3.offset-3(href="/user-home") Cancelar
     button.btn.btn-primary.col-3.offset-3(type="submit") Crear publicacion
   if error  
     p.text-danger= error

@@ -17,6 +17,29 @@ block content
             p.display-6.col-6.rounded.shadow-sm Somos una plataforma innovadora diseñada para conectar de manera transparente a aquellos que necesitan préstamos con prestamistas confiables. En "Loan Link", nos dedicamos a proporcionar una experiencia segura, confiable y accesible para todos nuestros usuarios
             div.col-6.d-flex.align-items-center.justify-content-center
                 img.w-75.h-100(src="/img/Prestamos-personales.png", alt="logo-loan-link")
+        .row.mt-5
+            .col-md-4 
+                .card 
+                    img(src="/img/paga-pypal.png", alt="Paga con paypal")
+                    .card-body 
+                        h5.card-title Uso de PayPal para pagos
+                        p.card-text
+                            | Utilizamos PayPal como plataforma segura para procesar tus pagos. PayPal te permite realizar transacciones de forma rápida y segura en nuestra plataforma.
+            .col-md-4 
+                .card 
+                    img(src="/img/ofrece-prestamos.png", alt="ofrece prestamos")
+                    .card-body 
+                        h5.card-title Publica ofertas de préstamos
+                        p.card-text
+                            | ¿Tienes un préstamo para ofrecer? Publica tu oferta en nuestra plataforma y espera a que los interesados se pongan en contacto contigo.
+            .col-md-4 
+                .card 
+                    img(src="/img/necesito-prestamo.png", alt="aplica a prestamos")
+                    .card-body 
+                        h5.card-title Navega y aplica a ofertas
+                        p.card-text
+                            | Explora nuestras ofertas de préstamos y aplica a aquella que mejor se ajuste a tus necesidades. Con nuestra interfaz intuitiva, encontrarás la oferta perfecta en minutos.
+
         h3.mt-5 ¿Por qué elegir "Loan Link"?
         .row.container.mt-5 
             div.col-5.d-flex.align-items-center.justify-content-center
@@ -36,9 +59,55 @@ block content
             img.w-75.mx-auto(src="/img/comunidad-loan-link.png", alt="comunidad-loanlink")
         h3.mt-5 ¿Listo para comenzar tu viaje financiero con "Loan Link"?
                 p.mt-3 
-                    a.link-underline.link-underline-opacity-0.link-opacity-25-hover(href="/before-register") ¡Regístrate ahora 
+                    a.link-underline.link-underline-opacity-0.link-opacity-25-hover.mb-5(href="/before-register") ¡Regístrate ahora 
                     |para explorar todas nuestras funciones y descubre cómo "Loan Link" puede ayudarte a alcanzar tus metas financieras!
-            
+    footer.footer.bg-light.mt-5.shadow
+        .container-fluid.row.p-5
+                //- Logo de la web
+                .col-3.p-5.text-center.border-end
+                    .w-100.h-50
+                        img.w-75.h-25.mb-3(src="/img/logo-png.png", alt="Logo de la web")
+                        p Aviso del uso de cookies: 
+                        samp Utilizamos cookies necesarias para mantener tu sesión iniciada. Al continuar utilizando nuestro sitio, aceptas el uso de estas cookies.
+                        
+                    a(href="#")
+                        i.bi.bi-facebook.text-primary.me-2
+                    a(href="#")
+                        i.bi.bi-twitter.text-primary.me-2
+                    a(href="#")
+                        i.bi.bi-instagram.text-primary.me-2
+                    a(href="#")
+                        i.bi.bi-threads.text-primary.me-2
+                .col-5.p-5.text-center.border-end
+                    p Política de Privacidad
+                    samp En Loan Link, nos comprometemos a proteger la privacidad de nuestros usuarios. Esta política de privacidad describe cómo recopilamos, utilizamos y compartimos la información personal que recopilamos a través de nuestra plataforma. 
+                    br
+                    |Información que recopilamos: Recopilamos información personal proporcionada por los usuarios al registrarse en nuestra plataforma, incluyendo nombre, dirección de correo electrónico, número de teléfono y detalles financieros relevantes.
+                    br
+                    |Uso de la información: Utilizamos la información recopilada para facilitar la interacción entre prestamistas y clientes de préstamos en nuestra plataforma. Esto incluye la presentación de ofertas de préstamos, la verificación de la identidad del usuario y la mejora de nuestros servicios.
+                    br
+                    |Seguridad de la información: Tomamos medidas para proteger la información personal de nuestros usuarios contra el acceso no autorizado, la divulgación o la alteración. Sin embargo, no podemos garantizar la seguridad absoluta de la información transmitida a través de Internet.
+                    br
+                    |Cambios en la política de privacidad: Nos reservamos el derecho de modificar esta política de privacidad en cualquier momento. Se notificarán cambios significativos a los usuarios a través de nuestra plataforma o por otros medios.
+                .col-4.p-5.text-center.border-end
+                    p Terminos de uso
+                    samp Al utilizar Loan Link, aceptas cumplir con los siguientes términos y condiciones:
+                    br
+                    |Uso de la plataforma: Nuestra plataforma se proporciona para facilitar la conexión entre prestamistas y clientes de préstamos. Al utilizar nuestro sitio web, aceptas utilizarlo solo con fines legales y de acuerdo con estos términos de uso.
+                    br
+                    |Registro de cuenta: Para acceder a ciertas funciones de nuestra plataforma, es posible que necesites registrarte y crear una cuenta. Al registrarte, aceptas proporcionar información precisa y completa, y mantener la confidencialidad de tu cuenta.
+                    br
+                    |Responsabilidad del usuario: Eres responsable de todas las actividades que ocurran bajo tu cuenta y aceptas notificarnos de inmediato cualquier uso no autorizado de tu cuenta o cualquier otra violación de seguridad.
+                    br
+                    |Limitación de responsabilidad: No somos responsables de los daños directos, indirectos, incidentales, especiales, consecuentes o punitivos que surjan del uso de nuestra plataforma, incluyendo, pero no limitado a, la pérdida de beneficios o la interrupción del negocio.
+                    br
+                    |Cambios en los términos de uso: Nos reservamos el derecho de modificar estos términos de uso en cualquier momento. Se notificarán cambios significativos a los usuarios a través de nuestra plataforma o por otros medios.
+
+                //- Mensaje de derechos reservados y desarrolladores
+                .col-12.text-center.text-md-right
+                    samp Todos los derechos reservados © 2024
+                    br
+                    samp Desarrollado por Frank Luis Duarte y Oscarina Rincón        
 
 
 //- h1= titulo

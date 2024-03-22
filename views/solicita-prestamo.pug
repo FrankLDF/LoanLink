@@ -1,0 +1,58 @@
+extends layout 
+
+block content 
+    .container-md.mx-auto.p-5.shadow.rounded.mt-5
+        h2.text-center.display-4.fw-bolder.text-secondary= `Solicita prestamo a: ${nombrePrestamista}`
+        .container-fluid.p-5.row.border.rounded
+            if exito 
+                p.text-success= exito
+            form.row(action=`/solicita-prestamo/${id_publicacion_prestamo}/${id_usuario}`, method="post") 
+                p.display-6.fw-bolder.text-primary.mb-5 Sobre su prestamo:
+                .mb-3.col-3.me-3
+                    label.form-label(for="monto") Cuanto dinero necesitas?  
+                    .input-group 
+                        sopan.input-group-text RD$
+                        input#monto.form-control(type="number", name="monto_solicitado", placeholder="00", required)
+                        sopan.input-group-text .00
+                .mb-3.col-3.me-3
+                    label.form-label(for="plazo") Cuanto tiempo necesitas?  
+                    .input-group 
+                        input#plazo.form-control(type="number", name="plazo_deseado", placeholder="12", required)
+                        sopan.input-group-text meses
+                .form-floating.col-5.mb-5.border.rounded.p-2 
+                    textarea#motivo.form-control(name="motivo_prestamo",required)
+                    label(for="motivo") Motivo por el cual solicita el prestamo 
+                
+                p.display-6.fw-bolder.text-primary.mb-5 Sobre su empleo actual:
+                .col-5.row.me-3.mb-3
+                    label(for="empleoact") Empleo actual:
+                    input.p-2.rounded#empleoact(type="text", name="empleo_actual", placeholder="Nombre de donde trabaja actualmente", required)
+                .col-5.row.mb-3
+                    label(for="contactoempl") Contacto del empleador:
+                    input.p-2.rounded#contactoempl(type="tel", name="contacto_empleador", placeholder="numero telefonico", required)
+                .col-5.row.me-3.mb-5
+                    label(for="cargo") Cargo que desempeña:
+                    input.p-2.rounded#cargo(type="text", name="cargo_posicion", placeholder="Cargo o posicion que ocupa actualmente", required)
+                .mb-3.col-5.mb-5
+                    label.form-label(for="ingresos") Ingresos mensuales  
+                    .input-group 
+                        sopan.input-group-text RD$
+                        input#ingresos.form-control(type="number", name="ingresos_mensuales", placeholder="00")
+                        sopan.input-group-text por mes
+
+                p.display-6.fw-bolder.text-primary.mb-5 Contacto de referencia:
+                .col-5.row.me-3.mb-5
+                    label(for="nombreref") Nombre del referente:
+                    input.p-2.rounded#nombreref(type="text", name="nombre_referencia", placeholder="Nombre de persona de referencia", required)
+                .col-5.row.mb-5
+                    label(for="contactref") Contacto del referente:
+                    input.p-2.rounded#contactref(type="tel", name="contacto_referencia", placeholder="numero telefonico", required)
+
+                a.btn.btn-success.col-2.offset-5.me-2(href="/user-home") Volver Atras
+                button.btn.btn-danger.col-2.me-2(type="reset") Cancelar
+                button.btn.btn-primary.col-2.me-2(type="submit") Enviar Solicitud
+            if error 
+                p.text-danger= error
+            
+
+

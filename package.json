@@ -21,7 +21,8 @@
     "mysql": "^2.18.1",
     "passport": "^0.7.0",
     "passport-local": "^1.0.0",
-    "pug": "^3.0.2"
+    "pug": "^3.0.2",
+    "sweetalert2": "^11.10.6"
   },
   "devDependencies": {
     "nodemon": "^3.1.0"

@@ -31,9 +31,8 @@ block content
                 input.p-2.col-12.mb-3.me-5(type="email", required, name="correo_electronico", id="correo", placeholder="correo@personalaqui.com")
                 input.p-2.col-12.mb-3.me-5(type="password", required, name="pass", id="pass", placeholder="Contraseña")
                 input.p-2.col-12.mb-3.me-5(type="password",required, name="confirmpass", id="confirmpass", placeholder="Confirma la contrasena")
-                if tipoUsuario === '2'
-                    input.p-2.col-12.mb-3.me-5(type="text",required, name="client_id", id="client_id", placeholder="Introduzca el client id de su cuenta paypal")
-                    input.p-2.col-12.mb-3.me-5(type="text",required, name="client_seceet", id="client_secret", placeholder="Introduzca el client secret de su cuenta paypal")
+                input.p-2.col-12.mb-3.me-5(type="text",required, name="client_id", id="client_id", placeholder="Introduzca el client id de su cuenta paypal")
+                input.p-2.col-12.mb-3.me-5(type="text",required, name="client_seceet", id="client_secret", placeholder="Introduzca el client secret de su cuenta paypal")
                 button.btn.btn-primary(type="submit") Crear cuenta
                 p.text-center.display-8.mt-3 Ya tienes una cuenta? 
                     a.link-underline.link-underline-opacity-0.link-opacity-25-hover(href="/login") Inicia seccion aqui 
