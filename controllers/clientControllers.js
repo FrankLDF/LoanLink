@@ -1,5 +1,4 @@
 import { conection, query } from "../model/db-conection.js";
-import passport from "passport";
 import userController from "./userController.js";
 
 // funcion para obtener fecha actual en formato DATETIME
@@ -50,8 +49,12 @@ const addSolicitud = async (req, res) => {
     } = req.body;
     const fecha_solicitud = obtenerFecha();
     const estado_solicitud = 1;
-    await query(
-      `INSERT INTO solicitud_prestamos (id_usuario, id_tipo_prestamo, id_publicacion, monto_solicitado, plazo_deseado, motivo_prestamo, empleo_actual, contacto_empleador, cargo_posicion, ingresos_mensuales, nombre_referencia, contacto_referencia, fecha_solicitud, estado_solicitud) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)`, [
+    const contenido = `${req.user[0].nombre} ${req.user[0].apellido} ha solicitado un prestamo de: $${monto_solicitado}`;
+
+    await query("START TRANSACTION");
+    const result = await query(
+      `INSERT INTO solicitud_prestamos (id_usuario, id_tipo_prestamo, id_publicacion, monto_solicitado, plazo_deseado, motivo_prestamo, empleo_actual, contacto_empleador, cargo_posicion, ingresos_mensuales, nombre_referencia, contacto_referencia, fecha_solicitud, estado_solicitud) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)`,
+      [
         id_usuario,
         id_tipo_prestamo,
         id_publicacion,
@@ -69,24 +72,38 @@ const addSolicitud = async (req, res) => {
       ]
     );
 
+    const id_solicitud = result.insertId;
+    console.log(`El ID de la solicitus es: ${id_solicitud}`)
+
     // generar una notificacion de la nueva solicitud
     const destinatario = await query(
       `SELECT usuarios.id_usuario FROM usuarios JOIN publicacion_prestamos ON usuarios.id_usuario = publicacion_prestamos.id_usuario WHERE publicacion_prestamos.id_publicacion_prestamo = ${id_publicacion}`
     );
-    const id = await query('SELECT LAST_INSERT_ID() as id');
-    const id_solicitud = id[0].id;
-    const contenido = `${req.user[0].nombre} ${req.user[0].apellido} ha solicitado un prestamo de: $${monto_solicitado}`
 
-    //llamando la funcion que agrega las notificaciones
-    userController.sendNotificacion(destinatario[0].id_usuario,id_solicitud, contenido, 2 )
-  
-    res.render("solicita-prestamo", {exito: "Solicitud enviada correctamente!, espere respuesta del prestamista correspondiente" });
-    
+
+    // llamando la función que agrega las notificaciones
+    await userController.sendNotificacion(
+      destinatario[0].id_usuario,
+      id_solicitud,
+      contenido,
+      2,
+    );
+
+    await query("COMMIT");
+
+    res.render("solicita-prestamo", {
+      exito:
+        "Solicitud enviada correctamente!, espere respuesta del prestamista correspondiente",
+    });
   } catch (error) {
+    await query("ROLLBACK");
     res.render("solicita-prestamo", { error: error.message });
-    
   }
 };
+
+const cInfoPrestamo = async (req, res) => {
+  res.render('c-info-prestamo', {titulo:"Detalles prestamo"})
+}
 
 
 // exportando las funciones aqui
@@ -94,4 +111,5 @@ export default {
   solicitarPrestamo,
   addSolicitud,
   obtenerFecha,
+  cInfoPrestamo,
 };

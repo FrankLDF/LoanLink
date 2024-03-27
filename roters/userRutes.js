@@ -2,6 +2,7 @@ import { Router } from "express";
 import userController from "../controllers/userController.js";
 import loanControllers from "../controllers/loanControllers.js";
 import clientControllers from "../controllers/clientControllers.js";
+import payController from "../controllers/payController.js";
 
 const router = Router();
 
@@ -30,13 +31,21 @@ router.get("/logout", (req, res) => {
 });
 
 router.get("/new-publication", userController.isLoggedIn, loanControllers.newPublication);
-router.post("/new-publication", loanControllers.addPublication);
-router.get("/loan-clients", loanControllers.loanClients);
+router.post("/new-publication", userController.isLoggedIn ,loanControllers.addPublication);
+router.get("/loan-clients", userController.isLoggedIn, loanControllers.loanClients);
+router.get("/prestamo-info", userController.isLoggedIn, loanControllers.prestamoInfo);
 
 router.get("/solicita-prestamo/:idP", userController.isLoggedIn, clientControllers.solicitarPrestamo);
 router.post("/solicita-prestamo/:idP/:idc", userController.isLoggedIn, clientControllers.addSolicitud);
+router.get("/detalles-prestamo", userController.isLoggedIn, clientControllers.cInfoPrestamo);
 
 router.get("/notificaciones", userController.isLoggedIn, userController.notificationView);
-router.get("/ver-notificacion/:idN", userController.isLoggedIn, userController.verNotificacion)
-router.get("/rechazar-notificacion/:id", userController.isLoggedIn, userController.rechazarNotificacion)
+router.get("/ver-notificacion/:idN", userController.isLoggedIn, userController.verNotificacion);
+router.get("/rechazar-notificacion/:id", userController.isLoggedIn, userController.rechazarNotificacion);
+router.get("/detalle-notificacion/:idN", userController.isLoggedIn, loanControllers.detalleNotificacion);
+router.post("/aceptar-notificacion/:idN", userController.isLoggedIn, payController.aceptaSolicitud);
+
+
+router.get("/chat", userController.isLoggedIn, userController.mensajeView);
+
 export default router;

@@ -58,7 +58,7 @@ async function sendNotificacion(id_destinatario, id_solicitud, contenido, tipo_n
 const notificationView = async (req, res) => {
   const user = req.user;
   const notificaciones = await query(
-    `SELECT notificaciones.* FROM notificaciones JOIN usuarios ON notificaciones.id_destinatario = usuarios.id_usuario WHERE usuarios.id_usuario = ${user[0].id_usuario}`
+    `SELECT notificaciones.* FROM notificaciones JOIN usuarios ON notificaciones.id_destinatario = usuarios.id_usuario WHERE usuarios.id_usuario = ${user[0].id_usuario} ORDER BY notificaciones.fecha_notificacion DESC`
   );
 
   for (const notificacion of notificaciones) {
@@ -243,6 +243,10 @@ const isLoggedIn = (req, res, next) => {
   res.redirect("/login");
 };
 
+const mensajeView = (req, res) => {
+  res.render('mensajes',{titulo:"LoanLink-Message"});
+}
+
 export default {
   home,
   beforeRegister,
@@ -258,4 +262,5 @@ export default {
   verNotificacion,
   rechazarNotificacion,
   aceptarNotificacion,
+  mensajeView,
 };

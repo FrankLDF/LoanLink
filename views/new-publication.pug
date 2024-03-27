@@ -2,6 +2,8 @@ extends layout.pug
 
 block content
   p.text-center.display-2.mb-5.mt-3.text-primary= `Publica tu oferta de prestamo! ${dataUser[0].nombre}`
+  a(href="/user-home")
+    i.bi.bi-arrow-left-circle-fill.text-secondary.display-1.ms-5.sticky-top
   form.container-md.shadow.rounded.row.mx-auto.p-5(action="/new-publication" method="post")
     input.p-3.mb-3.border.border-primary.rounded(type="text", name="nombre_prestamista", placeholder="Nombre personal o de la empresa")
     textarea.p-3.mb-3.border.border-primary.rounded(name="descripcion", cols="30", rows="10", placeholder="Sobre la empresa")

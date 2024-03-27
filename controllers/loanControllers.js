@@ -1,6 +1,5 @@
 // exportar conexion a la BD
 import { conection, query } from "../model/db-conection.js";
-import passport from "passport";
 
 const newPublication = (req, res) => {
   const dataUser = req.user;
@@ -42,6 +41,43 @@ const addPublication = async (req, res, next) => {
   }
 };
 
+const prestamoInfo = async (req, res) => {
+  res.render('prestamo-info', {titulo: "Info-prestamo"})
+}
+
+const detalleNotificacion = async (req, res) => {
+  try {
+    const idNotificacion = req.params.idN
+    const personalInfo = await query(`
+    SELECT usuarios.* 
+    FROM usuarios
+    JOIN solicitud_prestamos ON usuarios.id_usuario = solicitud_prestamos.id_usuario JOIN notificaciones ON solicitud_prestamos.id_solicitud_prestamo= notificaciones.id_solicitud WHERE notificaciones.id_notificacion= ${idNotificacion}`);
+    const solicitudInfo = await query(`
+      SELECT solicitud_prestamos.*
+      FROM solicitud_prestamos
+      JOIN notificaciones ON solicitud_prestamos.id_solicitud_prestamo = notificaciones.id_solicitud
+      WHERE notificaciones.id_notificacion= ${idNotificacion}
+    `);
+
+    const dataPersonal = personalInfo[0],
+      dataSolicitud = solicitudInfo[0]
+    
+
+
+
+
+    res.render('detalle-notificacion', {
+      titulo: 'solicitud-detalle',
+      idNotificacion,
+      dataPersonal,
+      dataSolicitud,
+    })
+    
+  } catch (error) {
+    console.error(error.message);
+  }
+};
+
 const loanClients = (req, res) => {
   let dataExample = [];
   res.render("loan-clients", {
@@ -56,4 +92,6 @@ export default {
   newPublication,
   addPublication,
   loanClients,
+  detalleNotificacion,
+  prestamoInfo,
 };

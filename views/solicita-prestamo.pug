@@ -2,6 +2,8 @@ extends layout
 
 block content 
     .container-md.mx-auto.p-5.shadow.rounded.mt-5
+        a(href="/user-home")
+            i.bi.bi-arrow-left-circle-fill.text-secondary.display-1.sticky-top
         h2.text-center.display-4.fw-bolder.text-secondary= `Solicita prestamo a: ${nombrePrestamista}`
         .container-fluid.p-5.row.border.rounded
             if exito 
@@ -48,9 +50,9 @@ block content
                     label(for="contactref") Contacto del referente:
                     input.p-2.rounded#contactref(type="tel", name="contacto_referencia", placeholder="numero telefonico", required)
 
-                a.btn.btn-success.col-2.offset-5.me-2(href="/user-home") Volver Atras
-                button.btn.btn-danger.col-2.me-2(type="reset") Cancelar
-                button.btn.btn-primary.col-2.me-2(type="submit") Enviar Solicitud
+                
+                button.btn.btn-danger.col-2.offset-7.me-2(type="reset") Cancelar
+                button.btn.btn-primary.col-2(type="submit") Enviar Solicitud
             if error 
                 p.text-danger= error
             

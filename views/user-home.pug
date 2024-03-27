@@ -3,14 +3,14 @@ extends layout.pug
 
 block header
     .container-fluid.shadow.bg-primary.d-flex.justify-content-end.mb-1.pt-2
-        a(href="/notificaciones") 
+        a(href="/notificaciones" title="Ver notificaciones") 
             if notificacioness.length !== 0
                 i.bi.bi-bell-fill.me-5.text-white
             else 
                 i.bi.bi-bell-slash-fill.text-white.me-5
         p.me-2.text-white= `${user[0].nombre} ${user[0].apellido}` 
         i.bi.bi-person-circle.text-white
-        a(href="/logout") 
+        a(href="/logout" title="Serrar sesion") 
             i.bi.bi-box-arrow-right.text-white.ms-5
             
     header.container-fluid.bg-primary.d-flex.justify-content-end.mb-1.p-2.shadow-sm 
@@ -22,7 +22,7 @@ block header
                 a.link-underline.link-underline-opacity-0.p-2.col-5.offset-1.text-white.border-bottom(href="/new-publication") Nueva Publicacion
                 a.link-underline.link-underline-opacity-0.p-2.col-5.offset-1.text-white.border-bottom(href="/loan-clients") Seguir prestamos
             else if user[0].tipo_usuario == "1"
-                a.link-underline.link-underline-opacity-0.p-2.col-7.text-white.border-bottom(href="#") Seguimiento de prestamo
+                a.link-underline.link-underline-opacity-0.p-2.col-7.text-white.border-bottom(href="/detalles-prestamo") Seguimiento de prestamo
                 //-a.p-2.col-5.offset-1.text-white.border(href="#") Seguimiento de prestamo
 
 block  content
@@ -63,6 +63,7 @@ block  content
             if user[0].tipo_usuario == "1"
                 if ofertasPublicadas.length !== 0
                     .container-lg.shadow.rounded.row.p-5.mx-auto
+                        h2.text-center.text-secondary Ofertas disponibles!
                         each oferta of ofertasPublicadas
                             .card.col-12.me-3.mx-auto.mt-3.border.border-primary
                                 .card-body 

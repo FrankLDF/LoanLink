@@ -1,0 +1,23 @@
+extends layout 
+
+block content 
+    .container-fluid.row
+        aside.col-5.d-flex.justify-content-center.bg-primary.row.sticky-content
+            a(href="/user-home")
+                i.bi.bi-arrow-left-circle-fill.text-light.display-1.ms-5
+            img.w-50.h-25.mx-auto.mb-auto(src="/img/logo-bold-png.png", alt="")
+        main.col-7.p-5.rounded.bg-light.vh-100.row
+            .col-6.rounded-4.bg-white.shadow.h-100.mx-auto
+                .bg-primary.row.p-2.rounded-4.header-chat 
+                    i.bi.bi-person-circle.col-1.display-5.text-white.me-1
+                    p.text-white.col-10.display-6.ms-3 Nombre usuario 
+                .bg-white.scrollable-content-chat.h-75.rowd-flex.align-items-start 
+                    p.col-3.ms-2.bg-info.p-2.mb-1.mt-5.rounded mesaje 1
+                    p.col-3.offset-9.bg-primary.p-2.mb-1.rounded.text-white mesaje 2
+                .p-3.h-auto 
+                    input.rounded-2.col-9.p-2(type="text", name="mensaje", placeholder="Escribe un mensaje aqui...")
+                    a.col-1.ms-4(href="#", title="Enviar")
+                        i.bi.bi-send-fill.text-primary.display-6
+
+
+
