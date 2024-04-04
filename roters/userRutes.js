@@ -43,7 +43,9 @@ router.get("/notificaciones", userController.isLoggedIn, userController.notifica
 router.get("/ver-notificacion/:idN", userController.isLoggedIn, userController.verNotificacion);
 router.get("/rechazar-notificacion/:id", userController.isLoggedIn, userController.rechazarNotificacion);
 router.get("/detalle-notificacion/:idN", userController.isLoggedIn, loanControllers.detalleNotificacion);
-router.post("/aceptar-notificacion/:idN", userController.isLoggedIn, payController.aceptaSolicitud);
+router.get("/aceptar-notificacion/:idN", userController.isLoggedIn, payController.aceptaSolicitud);
+router.get("/capture-order/:idN", userController.isLoggedIn, payController.captureOrder);
+router.get("/cancel-order", userController.isLoggedIn, payController.cancelOrder);
 
 
 router.get("/chat", userController.isLoggedIn, userController.mensajeView);

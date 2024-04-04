@@ -5,6 +5,23 @@ import clientControllers from "./clientControllers.js";
 import passport from "passport";
 // controllers
 //funcion de notificacion
+async function sendNotificacion(
+  id_destinatario,
+  id_solicitud,
+  contenido,
+  tipo_notificacion
+) {
+  try {
+    const fecha = clientControllers.obtenerFecha();
+
+    await query(
+      `INSERT INTO notificaciones (id_destinatario, id_solicitud, contenido_notificacion, fecha_notificacion, tipo_notificacion) VALUES (?,?,?,?,?)`,
+      [id_destinatario, id_solicitud, contenido, fecha, tipo_notificacion]
+    );
+  } catch (err) {
+    console.error(err.message);
+  }
+}
 async function verNotificacion(req, res) {
   try {
     const id = req.params.idN,
@@ -32,7 +49,17 @@ async function rechazarNotificacion(req, res) {
     const id_solicitud = solicitud[0].id_solicitud,
       fecha_respuesta = clientControllers.obtenerFecha(),
       estado_solicitud = 3;
-    await query(`UPDATE solicitud_prestamos SET fecha_respuesta = ? , estado_solicitud = ? WHERE id_solicitud_prestamo = ?`, [fecha_respuesta, estado_solicitud, id_solicitud])
+    await query(`UPDATE solicitud_prestamos SET fecha_respuesta = ? , estado_solicitud = ? WHERE id_solicitud_prestamo = ?`, [fecha_respuesta, estado_solicitud, id_solicitud]);
+
+    const usuario = await query(`SELECT usuarios.nombre FROM usuarios JOIN notificaciones ON notificaciones.id_destinatario = usuarios.id_usuario WHERE notificaciones.id_notificacion = ${id}`)
+
+    const solicituPrestamo = await query(`SELECT id_usuario, monto_solicitado FROM solicitud_prestamos WHERE id_solicitud_prestamo = ${id_solicitud}`)
+    
+    const id_destinatario = solicituPrestamo[0].id_usuario
+    const contenido = `EL prestamista: ${usuario[0].nombre} ha rechazado su solicitud de prestamo de RD$${solicituPrestamo[0].monto_solicitado}.00`;
+
+    await sendNotificacion(id_destinatario,null,contenido,1)
+
     res.redirect("/notificaciones");
     
   } catch (error) {
@@ -42,18 +69,7 @@ async function rechazarNotificacion(req, res) {
 async function aceptarNotificacion(req, res) {
   
 }
-async function sendNotificacion(id_destinatario, id_solicitud, contenido, tipo_notificacion) {
-  try {
-    const fecha = clientControllers.obtenerFecha();
 
-    await query(
-      `INSERT INTO notificaciones (id_destinatario, id_solicitud, contenido_notificacion, fecha_notificacion, tipo_notificacion) VALUES (?,?,?,?,?)`,
-      [id_destinatario, id_solicitud, contenido, fecha, tipo_notificacion]
-    );
-  } catch (err) {
-    console.error(err.message);
-  }
-}
 
 const notificationView = async (req, res) => {
   const user = req.user;

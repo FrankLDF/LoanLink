@@ -19,7 +19,7 @@ block content
                             if notify.estado_notificacion == 1
                                 a.col-2.offset-5.btn.btn-danger.text-center(href=`/rechazar-notificacion/${notify.id_notificacion}`) Rechazar
                                 a.col-2.btn.btn-secondary.text-center.ms-2(href=`/detalle-notificacion/${notify.id_notificacion}`) Detalles
-                                a.col-2.btn.btn-primary.text-center.ms-2(href="#") Aceptar
+                                a.col-2.btn.btn-primary.text-center.ms-2(href=`/aceptar-notificacion/${notify.id_notificacion}`) Aceptar
                             else 
                                 a.col-2.offset-5.btn.btn-danger.disabled.text-center(href="#" role="button" aria-disabled="true" ) Rechazar
                                 a.col-2.btn.btn-secondary.disabled.text-center.ms-2(href="#" role="button" aria-disabled="true" ) Detalles
