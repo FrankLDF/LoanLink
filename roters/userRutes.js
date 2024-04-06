@@ -3,6 +3,7 @@ import userController from "../controllers/userController.js";
 import loanControllers from "../controllers/loanControllers.js";
 import clientControllers from "../controllers/clientControllers.js";
 import payController from "../controllers/payController.js";
+import pagoPrestamoController from "../controllers/pagoPrestamoController.js";
 
 const router = Router();
 
@@ -33,11 +34,15 @@ router.get("/logout", (req, res) => {
 router.get("/new-publication", userController.isLoggedIn, loanControllers.newPublication);
 router.post("/new-publication", userController.isLoggedIn ,loanControllers.addPublication);
 router.get("/loan-clients", userController.isLoggedIn, loanControllers.loanClients);
-router.get("/prestamo-info", userController.isLoggedIn, loanControllers.prestamoInfo);
+router.get("/prestamo-info/:idPr", userController.isLoggedIn, loanControllers.prestamoInfo);
 
 router.get("/solicita-prestamo/:idP", userController.isLoggedIn, clientControllers.solicitarPrestamo);
 router.post("/solicita-prestamo/:idP/:idc", userController.isLoggedIn, clientControllers.addSolicitud);
-router.get("/detalles-prestamo", userController.isLoggedIn, clientControllers.cInfoPrestamo);
+router.get("/prestamos-activos", userController.isLoggedIn,clientControllers.prestamosClientes)
+router.get("/detalles-prestamo/:idPr", userController.isLoggedIn, clientControllers.cInfoPrestamo);
+router.get("/pago-prestamo/:idP", userController.isLoggedIn, pagoPrestamoController.pagoPrestamo);
+router.get("/capture-pago/:idP", userController.isLoggedIn, pagoPrestamoController.capturePago);
+router.get("/cancel-pago/:idP", userController.isLoggedIn, pagoPrestamoController.cancelPago);
 
 router.get("/notificaciones", userController.isLoggedIn, userController.notificationView);
 router.get("/ver-notificacion/:idN", userController.isLoggedIn, userController.verNotificacion);

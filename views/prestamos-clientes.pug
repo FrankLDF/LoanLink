@@ -1,7 +1,7 @@
 extends layout.pug 
 
 block content 
-    p.display-2.text-primary.text-center Tus Clientes!
+    p.display-2.text-primary.text-center Tus Prestamos!
     a(href="/user-home")
         i.bi.bi-arrow-left-circle-fill.text-secondary.display-1.ms-5.sticky-top
     .container-md.row.rounded.shadow.mx-auto.p-3
@@ -16,7 +16,5 @@ block content
                 li.col-3.display-7= `Proximo pago:  ${dia}/${mes}/${anio}`
                 a.col-1.offset-1(href="/chat") 
                     i.bi.bi-chat-left-text-fill.text-success
-                a.col-1(href=`/prestamo-info/${prestamo.id_prestamo}`) 
+                a.col-1(href=`/detalles-prestamo/${prestamo.id_prestamo}`) 
                     i.bi.bi-person-video2.text-primary
-            
-        

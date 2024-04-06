@@ -10,37 +10,52 @@ block content
             .col-10.bg-success.rounded.shadow.p-3.mx-auto.mb-3
                 .bg-white.rounded.p-3
                     h3.text-center.text-secondary Informacion del prestamo
-                    p Fecha de pago: 
-                        b 0/00/0000 
-                    p Monto total:  
-                        b RD$ 00.00
-                    p Cuota a pagar:  
-                        b RD$ 00.00
+                    - let fechaApro = new Date(dataPrestamo[0].fecha_aprovacion)
+                    - let diaApro = ("0" + fechaApro.getDate()).slice(-2);
+                    - let mesApro = ("0" + (fechaApro.getMonth() + 1)).slice(-2);
+                    - let anioApro = fechaApro.getFullYear();
+                    p Fecha de aprovacion: 
+                        b= `${diaApro}/${mesApro}/${anioApro}` 
+                    p Monto aprovado:  
+                        b= `$RD ${dataPrestamo[0].monto_solicitado}`
+                    p Tasa de interes de:  
+                        b= `${dataPrestamo[0].tasa_interes}`
+                    p Monto total a pagar:  
+                        b= `$RD${dataPrestamo[0].monto_pagar}`
+                    p Cuota de pago mensual:  
+                        b= `$RD ${dataPrestamo[0].cantidad_pago_mensual}`
                     p Pagos restantes:  
-                        b 0
-                    p Estado: 
-                        b --
+                            b= `${dataPrestamo[0].cuotas_pendiente}`
+                    
+                    - let fechaUlt = new Date(dataPrestamo[0].fecha_ultimo_pago)
+                    - let diaUlt = ("0" + fechaUlt.getDate()).slice(-2);
+                    - let mesUlt = ("0" + (fechaUlt.getMonth() + 1)).slice(-2);
+                    - let anioUlt = fechaUlt.getFullYear();
+                    p Ultimo pagao realizado:
+                        if dataPrestamo[0].fecha_ultimo_pago != null 
+                            b= `${diaUlt}/${mesUlt}/${anioUlt}`
+                        else 
+                            b= ` - - -` 
+                    - let fechaProx = new Date(dataPrestamo[0].fecha_proximo_pago)
+                    - let diaProx = ("0" + fechaProx.getDate()).slice(-2);
+                    - let mesProx = ("0" + (fechaProx.getMonth() + 1)).slice(-2);
+                    - let anioProx = fechaProx.getFullYear();
+                    p Fecha de Proximo Pago: 
+                        b= `${diaProx}/${mesProx}/${anioProx}` 
             .col-5.bg-primary.rounded.shadow.p-3.mx-auto.me-2
                 .bg-white.rounded.p-3
                     h3.text-center.text-secondary Datos personales
                     p Nombre: 
-                        b Jose Gutierrez 
+                        b= `${dataPrestamo[0].nombre} ${dataPrestamo[0].apellido}`
                     p Nacionatidad:  
-                        b Dominicano
-                    p No. identificacion:  
-                        b 402-2563485693-8
+                        b= `${dataPrestamo[0].nacionalidad}`
+                    p NO. identificacion:  
+                        b= `${dataPrestamo[0].documento}`
                     p Direccion actual:  
-                        b Direccion de cliente aqui
-                    p Telefono: 
-                        b 849-253-3652
-                    p Trabajo actual: 
-                        b Trabajo aqui 
-                    p Ingresos mensuales: 
-                        b RD$ 00.00 
-                    p Nombre referente: 
-                        b Nombre de quien da referencia del cliente 
-                    p Contacto referente: 
-                        b 851-265-3214 
+                        b= `${dataPrestamo[0].direccion}`
+                    p Numero telefonico:  
+                        b= `${dataPrestamo[0].telefono}`
+                    
             .col-5.bg-warning.rounded.shadow.p-3.mx-auto
                 .bg-white.rounded.p-3
                     h3.text-center.text-secondary Perfil crediticio

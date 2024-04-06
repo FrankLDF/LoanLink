@@ -101,8 +101,21 @@ const addSolicitud = async (req, res) => {
   }
 };
 
+const prestamosClientes = async (req, res) => {
+  const prestamista = req.user[0];
+  const prestamosActivos = await query(
+    `SELECT prestamos.*, usuarios.nombre, usuarios.apellido FROM prestamos INNER JOIN usuarios ON prestamos.id_prestamista = usuarios.id_usuario WHERE prestamos.id_cliente = ${prestamista.id_usuario} AND prestamos.estado = 1 `
+  );
+  res.render('prestamos-clientes', {titulo: "Prestamos Activos", prestamosActivos})
+}
+
 const cInfoPrestamo = async (req, res) => {
-  res.render('c-info-prestamo', {titulo:"Detalles prestamo"})
+  const idPrestamo = req.params.idPr;
+
+  const dataPrestamo = await query(
+    `SELECT prestamos.*, usuarios.* FROM prestamos INNER JOIN usuarios ON usuarios.id_usuario = prestamos.id_prestamista WHERE id_prestamo = ${idPrestamo}`
+  );
+  res.render('c-info-prestamo', {titulo:"Detalles prestamo", dataPrestamo})
 }
 
 
@@ -111,5 +124,6 @@ export default {
   solicitarPrestamo,
   addSolicitud,
   obtenerFecha,
+  prestamosClientes,
   cInfoPrestamo,
 };

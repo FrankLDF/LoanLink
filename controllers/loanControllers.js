@@ -32,9 +32,9 @@ const addPublication = async (req, res, next) => {
         cant_min,
         cant_max,
         requisitos,
-        ]
-      );
-      res.redirect("/user-home");
+      ]
+    );
+    res.redirect("/user-home");
   } catch (error) {
     console.error(`error al ejecutar las consulta: ${error.message}`);
     next(error);
@@ -42,12 +42,16 @@ const addPublication = async (req, res, next) => {
 };
 
 const prestamoInfo = async (req, res) => {
-  res.render('prestamo-info', {titulo: "Info-prestamo"})
-}
+  const idPrestamo = req.params.idPr;
+  
+  const dataPrestamo = await query(`SELECT prestamos.*, usuarios.* FROM prestamos INNER JOIN usuarios ON usuarios.id_usuario = prestamos.id_cliente WHERE id_prestamo = ${idPrestamo}`);
+  
+  res.render("prestamo-info", { titulo: "Info-prestamo", dataPrestamo});
+};
 
 const detalleNotificacion = async (req, res) => {
   try {
-    const idNotificacion = req.params.idN
+    const idNotificacion = req.params.idN;
     const personalInfo = await query(`
     SELECT usuarios.* 
     FROM usuarios
@@ -60,31 +64,29 @@ const detalleNotificacion = async (req, res) => {
     `);
 
     const dataPersonal = personalInfo[0],
-      dataSolicitud = solicitudInfo[0]
-    
+      dataSolicitud = solicitudInfo[0];
 
-
-
-
-    res.render('detalle-notificacion', {
-      titulo: 'solicitud-detalle',
+    res.render("detalle-notificacion", {
+      titulo: "solicitud-detalle",
       idNotificacion,
       dataPersonal,
       dataSolicitud,
-    })
-    
+    });
   } catch (error) {
     console.error(error.message);
   }
 };
 
-const loanClients = (req, res) => {
-  let dataExample = [];
+const loanClients = async (req, res) => {
+  const prestamista = req.user[0];
+  const prestamosActivos = await query(
+    `SELECT prestamos.*, usuarios.nombre, usuarios.apellido FROM prestamos INNER JOIN usuarios ON prestamos.id_cliente = usuarios.id_usuario WHERE prestamos.id_prestamista = ${prestamista.id_usuario} AND prestamos.estado = 1 `
+  );
+  
+
+
   res.render("loan-clients", {
-    titulo: "prestamos-activos",
-    nombre: "Ernesto Celestino Hernandez",
-    pagosPendientes: "5",
-    estado: "Activo",
+    prestamosActivos
   });
 };
 
