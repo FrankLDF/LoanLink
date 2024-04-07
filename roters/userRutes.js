@@ -53,6 +53,7 @@ router.get("/capture-order/:idN", userController.isLoggedIn, payController.captu
 router.get("/cancel-order", userController.isLoggedIn, payController.cancelOrder);
 
 
-router.get("/chat", userController.isLoggedIn, userController.mensajeView);
+router.get("/chat/:idP", userController.isLoggedIn, userController.mensajeView);
+router.post("/chat/:idE/:idR/:idP", userController.isLoggedIn, userController.addMensaje);
 
 export default router;

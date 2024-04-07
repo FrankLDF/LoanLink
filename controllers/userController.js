@@ -259,8 +259,63 @@ const isLoggedIn = (req, res, next) => {
   res.redirect("/login");
 };
 
-const mensajeView = (req, res) => {
-  res.render('mensajes',{titulo:"LoanLink-Message"});
+const mensajeView = async (req, res) => {
+  const idPrestamo = req.params.idP
+  const idUsuarioActivo = req.user[0].id_usuario;
+  const tipoUsuario = req.user[0].tipo_usuario;
+  const prestamo = await query(`SELECT prestamos.* FROM prestamos where id_prestamo = ${idPrestamo}`);
+  if (tipoUsuario == 1) {
+    const receptor = await query(`  
+    SELECT nombre, apellido, id_usuario
+    FROM usuarios
+    WHERE id_usuario = ${prestamo[0].id_prestamista}
+    `);
+    const idReceptor = receptor[0].id_usuario;
+    const nombreReceptor = `${receptor[0].nombre} ${receptor[0].apellido}`
+    const mensajes = await query(`
+    SELECT *
+    FROM mensajes
+    WHERE (id_remitente = ${idUsuarioActivo} AND id_destinatario = ${prestamo[0].id_prestamista}) 
+    OR (id_remitente = ${prestamo[0].id_prestamista} AND id_destinatario = ${idUsuarioActivo})
+    ORDER BY fecha_mensaje
+    `);
+    
+    res.render('mensajes', { titulo: "LoanLink-Message", mensajes, idUsuarioActivo, nombreReceptor, idReceptor, idPrestamo });
+    
+  } else if (tipoUsuario == 2) {
+    const receptor = await query(`  
+    SELECT nombre, apellido, id_usuario
+    FROM usuarios
+    WHERE id_usuario = ${prestamo[0].id_cliente}
+    `);
+    const idReceptor = receptor[0].id_usuario;
+    const nombreReceptor = `${receptor[0].nombre} ${receptor[0].apellido}`;
+    const mensajes = await query(`
+    SELECT mensajes.*
+    FROM mensajes
+    WHERE (id_remitente = ${idUsuarioActivo} AND id_destinatario = ${prestamo[0].id_cliente}) OR (id_remitente = ${prestamo[0].id_cliente} AND id_destinatario = ${idUsuarioActivo})
+    ORDER BY fecha_mensaje
+    `);
+    res.render('mensajes', { titulo: "LoanLink-Message", mensajes, idUsuarioActivo, nombreReceptor, idReceptor,idPrestamo });
+  
+  }
+};
+
+const addMensaje = async (req, res) => {
+  try {
+    const emisor = req.params.idE,
+      receptor = req.params.idR,
+      mensaje = req.body.mensaje,
+      fecha = clientControllers.obtenerFecha(),
+      idP = req.params.idP;
+    
+    await query(`INSERT INTO mensajes (id_remitente, id_destinatario, contenido_mensaje, fecha_mensaje) VALUES (?,?,?,?)`, [emisor, receptor, mensaje, fecha]);
+
+    res.redirect(`/chat/${idP}`);
+    
+  } catch (error) {
+    console.error(error.message)
+  }
 }
 
 export default {
@@ -279,4 +334,5 @@ export default {
   rechazarNotificacion,
   aceptarNotificacion,
   mensajeView,
+  addMensaje,
 };
