@@ -1,0 +1,40 @@
+extends layout 
+
+block content 
+    .container-fluid.row
+        aside.col-5.d-flex.justify-content-center.bg-primary.row.sticky-content
+            a(href="/user-home")
+                i.bi.bi-arrow-left-circle-fill.text-light.display-1.ms-5
+            img.w-50.h-25.mx-auto.mb-auto(src="/img/logo-bold-png.png", alt="")
+        main.col-7.p-5.rounded.bg-light.vh-100.row
+            .col-6.rounded-4.bg-white.shadow.h-100.mx-auto.overflow
+                .bg-primary.row.p-2.rounded-4.header-chat.mb-2
+                    i.bi.bi-person-circle.col-1.display-5.text-white.me-1
+                    p.text-white.col-10.fs-4.ms-3= nombreReceptor 
+                .bg-white.h-75.rowd-flex.align-items-start.overflow-auto
+                    - function formatChatDate(dateString) {
+                    - const date = new Date(dateString);
+                    - const day = ("0" + date.getDate()).slice(-2);
+                    - const month = ("0" + (date.getMonth() + 1)).slice(-2);
+                    - const year = date.getFullYear();
+                    - const hours = ("0" + date.getHours()).slice(-2);
+                    - const minutes = ("0" + date.getMinutes()).slice(-2);
+                    - return `${day}/${month}/${year} ${hours}:${minutes}`;}
+                    each mensaje in mensajes
+                        if mensaje.id_remitente == idUsuarioActivo
+                            .col-6.offset-6.bg-primary.p-2.rounded.mb-1
+                                p.text-white.fw-bold= `${mensaje.contenido_mensaje}`
+                                small.ms-5= `${formatChatDate(mensaje.fecha_mensaje)}`
+                        else
+                            .col-6.ms-2.bg-info.p-2.rounded.mb-1
+                                p.text-white.fw-bold= `${mensaje.contenido_mensaje}`
+                                small.ms-5= `${formatChatDate(mensaje.fecha_mensaje)}`
+                .p-3.h-auto 
+                    form(action=`/chat/${idUsuarioActivo}/${idReceptor}/${idPrestamo}`, method="post") 
+                        input.rounded-2.col-9.p-2(type="text", name="mensaje", placeholder="Escribe un mensaje aqui...", required)
+                        button.col-1.ms-4(type="submit", title="Enviar", class="btn border-0 bg-transparent") 
+                            i.bi.bi-send-fill.text-primary.display-6
+                        
+
+
+

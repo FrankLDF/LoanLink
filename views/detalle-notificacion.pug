@@ -1,0 +1,56 @@
+extends layout 
+
+block content
+    h2.text-center.text-secondary Sobre el solicitante!
+    a(href="/notificaciones")
+        i.bi.bi-arrow-left-circle-fill.text-secondary.display-1.ms-5
+    .container.mx-auto.rounded.shadow.row.p-5
+        .col-3.rounded.bg-warning.text-center.me-3 
+            h3.text-white.text-center Perfil crediticio del solicitante
+            .rounded.shadow.bg-white.mt-3.p-3
+                p Puntaje de credito: 
+                    b 100
+                p Historial de pagos:  
+                    b 100%
+                p Monto de deudas actuales:  
+                    b RD$ 00.00
+                p Limite de credito:  
+                    b --
+                p Prestamos anteriores: 
+                    b 0
+        .col-4.rounded.bg-primary.text-center.me-3 
+            h3.text-white.text-center Datos Personales
+            .rounded.shadow.bg-white.mt-3.p-3
+                p Nombre: 
+                    b= `${dataPersonal.nombre} ${dataPersonal.apellido}`
+                p Nacionalidad:
+                    b= ` ${dataPersonal.nacionalidad} `
+                p No. Documento Identidad:
+                    b= ` ${dataPersonal.documento} `
+                p Telefono Personal:
+                    b= ` ${dataPersonal.telefono} `
+                p Direccion Actual: 
+                    b= ` ${dataPersonal.direccion} `
+                p Empleo Actual: 
+                    b= ` ${dataSolicitud.empleo_actual} `
+                p Cargo que ocupa: 
+                    b= ` ${dataSolicitud.cargo_posicion} `
+                p Ingresos Mensuales: 
+                    b= ` $${dataSolicitud.ingresos_mensuales}.00 `
+                p Contacto del empleador: 
+                    b= ` ${dataSolicitud.contacto_empleador} `
+        .col-4.rounded.bg-success.text-center.me-3 
+            h3.text-white.text-center Datos de Solicitud
+            .rounded.shadow.bg-white.mt-3.p-3
+                p Monto solicitado: 
+                    b= ` $${dataSolicitud.monto_solicitado}.00 `
+                p Plazo solicitado: 
+                    b= ` ${dataSolicitud.plazo_deseado} meses `
+                p Motivo del prestamo: 
+                    b= ` ${dataSolicitud.motivo_prestamo}`
+                p Nombre de referente: 
+                    b= ` ${dataSolicitud.nombre_referencia}`
+                p Contacto de referente: 
+                    b= ` ${dataSolicitud.contacto_referencia}`
+        a.btn.btn-danger.col-2.offset-6.me-3.mt-5(href=`/rechazar-notificacion/${idNotificacion}`) Rechazar
+        a.btn.btn-primary.col-2.mt-5(href=`/aceptar-notificacion/${idNotificacion}`) Aceptar

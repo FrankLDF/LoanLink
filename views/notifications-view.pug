@@ -1,0 +1,41 @@
+extends layout.pug 
+
+block content 
+    .container-fluid.row
+        aside.col-6.d-flex.justify-content-center.bg-primary.row.sticky-content
+            a(href="/user-home")
+                i.bi.bi-arrow-left-circle-fill.text-light.display-1.ms-5
+            img.w-50.h-25.mx-auto.mb-auto(src="/img/logo-bold-png.png", alt="")
+        main.col-6.p-5.rounded.shadow.vh-100.row.scrollable-content
+            h2.display-4.text-secondary.text-center Notificaciones
+            if notificaciones.length > 0
+                each notify in notificaciones
+                    if notify.tipo_notificacion == 2 
+                        .border.rounded.p-3.mb-3.row(class=notify.estado_notificacion == 2 ? 'bg-light' : '')
+                            - const fecha = new Date(notify.fechaFormateada)
+                            p.col-12.text-end= `${fecha.toLocaleString('es-ES', {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric'})}`
+                            p.col-12.display-6= `${notify.contenido_notificacion}`
+                            .col-12.row
+                            if notify.estado_notificacion == 1
+                                a.col-2.offset-5.btn.btn-danger.text-center(href=`/rechazar-notificacion/${notify.id_notificacion}`) Rechazar
+                                a.col-2.btn.btn-secondary.text-center.ms-2(href=`/detalle-notificacion/${notify.id_notificacion}`) Detalles
+                                a.col-2.btn.btn-primary.text-center.ms-2(href=`/aceptar-notificacion/${notify.id_notificacion}`) Aceptar
+                            else 
+                                a.col-2.offset-5.btn.btn-danger.disabled.text-center(href="#" role="button" aria-disabled="true" ) Rechazar
+                                a.col-2.btn.btn-secondary.disabled.text-center.ms-2(href="#" role="button" aria-disabled="true" ) Detalles
+                                a.col-2.btn.btn-primary.disabled.text-center.ms-2(href="#" role="button" aria-disabled="true" ) Aceptar
+                    if notify.tipo_notificacion == 1
+                        .border.rounded.p-3.mb-3.row(class=notify.estado_notificacion == 2 ? 'bg-light' : '')
+                            - const fecha = new Date(notify.fechaFormateada)
+                            p.col-12.text-end= `${fecha.toLocaleString('es-ES', {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric'})}`
+                            p.col-12.display-6= `${notify.contenido_notificacion}`
+                            .col-12.row
+                            if notify.estado_notificacion == 1
+                                a.col-4.offset-8.btn.btn-primary.text-center(href=`/ver-notificacion/${notify.id_notificacion}`) Marcar como vista
+                            else
+                                a.col-4.offset-8.btn.btn-primary.disabled.text-center(href=`/ver-notificacion${notify.id_notificacion}` role="button" aria-disabled="true" ) Marcar como vista
+            else 
+                h3.text-center.text-secondary No tienes notidicaciones actualmente!
+
+            
+

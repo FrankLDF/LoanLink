@@ -1,0 +1,26 @@
+extends layout.pug
+
+block content 
+    main.container-fluid.row 
+        .col-4.d-flex.justify-content-center.vh-100.bg-primary.row
+            img.w-75.h-25.mt-3(src="/img/logo-bold-png.png", alt="logo-loanlink")
+            p.h2.col-12.text-center 
+                span.text-white Bienvenido! 
+                | a nuestra comunidad de prestamos.
+            img.w-75.mb-3(src="/img/comunidad-loan-link.png", alt="logo-loanlink")
+            
+        .col-8.vh-100.p-5.row
+            h2.text-center.text-secondary Cómo deceas registrarte?
+            form.mx-auto.rounded(action="", method="post")
+                .col-10.form-check.form-switch.d-flex.mb-5 
+                    input.form-check-input(type="radio", required, name="tipo_usuario" , id="cliente", value="1")
+                    label.form-check-label.display-6(for="cliente") Quiero un prestamo
+                .col-10.form-check.form-switch 
+                    input.form-check-input(type="radio", name="tipo_usuario" , id="prestamista", value="2")
+                    label.form-check-label.display-6(for="prestamista") Quiero prestar
+                button.btn.btn-primary.col-2.offset-8(type="submit") Siguiente
+            .border.rounded.p-3
+                p.display-6 Nota:
+                p
+                    | Antes de continuar, por favor ten en cuenta que para utilizar nuestra plataforma de pagos, se requiere una cuenta Business de PayPal. Una cuenta Business de PayPal te permite recibir pagos de manera segura y profesional. Si aún no tienes una cuenta Business de PayPal, puedes crear una fácilmente en el siguiente enlace: 
+                    a(href="https://www.paypal.com/es/business", target="_blank", rel="noopener noreferrer")   __Crear cuenta Business de PayPal

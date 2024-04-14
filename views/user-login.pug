@@ -1,0 +1,25 @@
+extends layout.pug 
+
+block content 
+    main.container-fluid.full-screen-container.vh-100.d-flex.align-items-center.justify-content-center.bg-light
+        .container-sm.rounded.shadow.row.bg-white.bg-opacity-75.p-5
+            .col-4.bg-primary.d-flex.align-items-center.justify-content-center.rounded
+                img.w-75.h-25(src="/img/logo-bold-png.png", alt="logo-loan-link") 
+            .col-8.d-flex.align-items-center.justify-content-center.bg-white.rounded
+                form.p-5(action="/login", method="post")
+                    .row.justify-content-center
+                            .mb-3
+                                label.form-label(for="inputemail") Correo: 
+                                input.d-blok.form-control(type="email" name="correo_electronico" id="inputemail" placeholder="Bienvenido@LoanLink.com" required)
+                            .mb-3
+                                label.form-label(for="inputpass") Contraseña: 
+                                input.d-blok.form-control(type="password" name="contrasena" id="inputpass" required placeholder="Escriba su contraseña")
+                            a.btn.btn-danger.col-4.me-3(href="/")  Cancelar   
+                            button.btn.btn-primary.col-4(type="submit") Iniciar
+                            p.text-center.display-8.mt-5 Aún no tienes una cuenta? 
+                                a.link-underline.link-underline-opacity-0.link-opacity-25-hover(href="/before-register") Registrate aqui
+                    if error 
+                        p.text-danger= error    
+
+
+    //- .bg-background-image(style="background-image: url('/img/bg-login.jpg'); background-size: cover;") 
