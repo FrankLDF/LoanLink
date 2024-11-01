@@ -47,8 +47,8 @@ LoanLink es una plataforma de préstamos en línea que conecta a personas que de
 ## Contribuciones
 Las contribuciones son bienvenidas. Por favor, sigue estos pasos para contribuir:
 
-Haz un fork del proyecto.
-1. Crea una rama para tu característica o mejora (git checkout -b feature/nueva-feature).
-2. Realiza tus cambios y haz commit (git commit -m 'Añadir nueva feature').
-3. Haz push a la rama (git push origin feature/nueva-feature).
-3. Abre un pull request.
+1. Haz un fork del proyecto.
+2. Crea una rama para tu característica o mejora (git checkout -b feature/nueva-feature).
+3. Realiza tus cambios y haz commit (git commit -m 'Añadir nueva feature').
+4. Haz push a la rama (git push origin feature/nueva-feature).
+5. Abre un pull request.
